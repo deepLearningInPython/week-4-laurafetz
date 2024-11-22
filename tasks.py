@@ -195,14 +195,14 @@ def tokenize_and_encode(documents: list) -> list:
     for doc in documents:
         tokens.extend([word.strip('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~').lower() for word in doc.split() if word.strip('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~')])
         unique_tokens = sorted(set(tokens))
-        token_to_id = {token: idx for idx, token in enumerate(unique_tokens)}
-        id_to_token = {idx: token for token, idx in token_to_id.items()}
-        encoded_documents = []
+        t2i = {token: idx for idx, token in enumerate(unique_tokens)}
+        i2t = {idx: token for token, idx in t2i.items()}
+        enc = []
         for doc in documents:
-            encoded_documents.append([token_to_id[word.strip('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~').lower()]
+            enc.append([t2i[word.strip('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~').lower()]
                                       for word in doc.split()
                                       if word.strip('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~')])
-    return encoded_documents, token_to_id, id_to_token
+    return enx, t2i, i2t
     
 # Test:
 enc, t2i, i2t = tokenize_and_encode([text, 'What a luck we had today!'])
