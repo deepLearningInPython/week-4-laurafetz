@@ -197,7 +197,7 @@ def tokenize_and_encode(documents: list) -> list:
         unique_tokens = sorted(set(tokens))
         token_to_id = {token: idx for idx, token in enumerate(unique_tokens)}
         id_to_token = {idx: token for token, idx in token_to_id.items()}
-        encode documents = []
+        encoded_documents = []
         for doc in documents:
             encoded_documents.append([token_to_id[word.strip('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~').lower()]
                                       for word in doc.split()
